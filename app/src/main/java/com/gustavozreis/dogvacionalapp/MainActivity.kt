@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     This functions retrieves e new dog object from the API and manipulates the views with it
      */
     fun getNewDogFromAPI() {
-        val dogObjectCall: Call<DogPhotoModel> = viewModel.getNewDogObject()
+        viewModel.getNewDogObject()
         // dog phrase placeholder
         tvDogPhrase?.text = "Dê mais atenção ao que você tem de bom na sua vida!"
         // dog image placeholder
