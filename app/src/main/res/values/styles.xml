@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="quote_style" parent="TextAppearance.AppCompat">
+        <item name="android:shadowColor">@color/purple</item>
+        <item name="android:textColor">@color/yellow</item>
+        <item name="textOutlineColor">@color/blue</item>
+        <item name="textOutlineThickness">40dp</item>
+        <item name="android:shadowRadius">2.0</item>
+        <item name="android:shadowDy">3</item>
+        <item name="android:shadowDx">3</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+</resources>

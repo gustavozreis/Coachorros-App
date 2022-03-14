@@ -44,8 +44,10 @@
 
                 <TextView
                     android:id="@+id/tv_message"
+                    style="@style/quote_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="center"
                     android:padding="32dp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_dog_image"
@@ -63,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/purple"
-            android:text="NOVO DOGVACIONAL"
+            android:text="NOVO COACHorro"
             android:textColor="@color/yellow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
