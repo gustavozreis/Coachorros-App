@@ -24,7 +24,7 @@ private val retrofit = Retrofit.Builder()
 interface DogApiService {
     // this function returns the json object with the image url and the success/error message
     @GET("breeds/image/random")
-    suspend fun getDogPhoto(): Call<DogPhotoModel>
+    suspend fun getDogObject(): Call<DogPhotoModel>
 
 }
 
