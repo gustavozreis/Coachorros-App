@@ -6,14 +6,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.lifecycleScope
 import com.gustavozreis.dogvacionalapp.databinding.ActivityMainBinding
-import com.gustavozreis.dogvacionalapp.network.DogApiService
 import com.gustavozreis.dogvacionalapp.network.DogPhotoModel
 import com.gustavozreis.dogvacionalapp.viewmodels.MainViewModel
-import retrofit2.Call
 
 class MainActivity : AppCompatActivity() {
 

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gustavozreis.dogvacionalapp.network.DogApi
-import com.gustavozreis.dogvacionalapp.network.DogApiService
 import com.gustavozreis.dogvacionalapp.network.DogPhotoModel
 import kotlinx.coroutines.launch
 import retrofit2.Call
