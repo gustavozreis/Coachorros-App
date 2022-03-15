@@ -25,15 +25,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
-
-
         ivDogImage = binding?.ivDogImage
         tvDogPhrase = binding?.tvMessage
         btnNewDog = binding?.btnNewdog
 
-        var dogObject: DogPhotoModel?
+        var dogObject: String?
         viewModel.dogObject.observe(this) { dogObjectViewModel ->
             dogObject = dogObjectViewModel
+        }
+
+        btnNewDog?.setOnClickListener {
+            getNewDogFromAPI()
         }
 
     }

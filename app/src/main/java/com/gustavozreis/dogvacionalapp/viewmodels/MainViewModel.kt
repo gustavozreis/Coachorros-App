@@ -13,26 +13,22 @@ import retrofit2.Response
 
 class MainViewModel : ViewModel() {
 
-    var _dogObject = MutableLiveData<DogPhotoModel?>()
-    val dogObject: LiveData<DogPhotoModel?>
+    var _dogObject = MutableLiveData<String?>()
+    val dogObject: LiveData<String?>
         get() = _dogObject
-
 
     /*
     This function retrieve a new dog photo from the API, uses the viewmodel coroutine
      */
     fun getNewDogObject() {
         viewModelScope.launch {
-            DogApi.retrofitService.getDogObject().enqueue(object : Callback<DogPhotoModel> {
-                override fun onResponse(
-                    call: Call<DogPhotoModel>,
-                    response: Response<DogPhotoModel>
-                ) {
+            DogApi.retrofitService.getDogObject().enqueue(object : Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
                     _dogObject.value = response.body()
                 }
 
-                override fun onFailure(call: Call<DogPhotoModel>, t: Throwable) {
-                    _dogObject.value = null
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    _dogObject.value = "Error: " + t.message
                 }
             })
         }

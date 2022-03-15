@@ -5,6 +5,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 
 private const val BASE_URL = "https://dog.ceo/api/"
@@ -16,14 +17,14 @@ private val moshi = Moshi.Builder()
 
 // retrofit object (http callbacks)
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addConverterFactory(ScalarsConverterFactory.create())
     .baseUrl(BASE_URL)
     .build()
 
 interface DogApiService {
     // this function returns the json object with the image url and the success/error message
     @GET("breeds/image/random")
-    suspend fun getDogObject(): Call<DogPhotoModel>
+    fun getDogObject(): Call<String>
 
 }
 
