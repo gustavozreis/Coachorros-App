@@ -6,9 +6,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.lifecycle.LiveData
 import com.gustavozreis.dogvacionalapp.databinding.ActivityMainBinding
 import com.gustavozreis.dogvacionalapp.network.DogPhotoModel
 import com.gustavozreis.dogvacionalapp.viewmodels.MainViewModel
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,9 +31,8 @@ class MainActivity : AppCompatActivity() {
         tvDogPhrase = binding?.tvMessage
         btnNewDog = binding?.btnNewdog
 
-        var dogObject: String?
-        viewModel.dogObject.observe(this) { dogObjectViewModel ->
-            dogObject = dogObjectViewModel
+        viewModel.dogObject.observe(this) { newDogObject ->
+            tvDogPhrase?.text = newDogObject?.imgUrl
         }
 
         btnNewDog?.setOnClickListener {
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     fun getNewDogFromAPI() {
         viewModel.getNewDogObject()
         // dog phrase placeholder
-        tvDogPhrase?.text = dogObject?.imgUrl
+        //tvDogPhrase?.text = dogObject?.imgUrl
         // dog image placeholder
         //ivDogImage?.setImageResource(R.drawable.dog_example)
     }

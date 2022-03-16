@@ -1,11 +1,12 @@
 package com.gustavozreis.dogvacionalapp.network
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 
 private const val BASE_URL = "https://dog.ceo/api/"
@@ -17,14 +18,15 @@ private val moshi = Moshi.Builder()
 
 // retrofit object (http callbacks)
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(ScalarsConverterFactory.create())
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
     .build()
 
 interface DogApiService {
     // this function returns the json object with the image url and the success/error message
     @GET("breeds/image/random")
-    fun getDogObject(): Call<String>
+    fun getDogObject(): Deferred<DogPhotoModel>
 
 }
 
