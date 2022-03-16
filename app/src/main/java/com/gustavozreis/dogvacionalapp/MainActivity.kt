@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
+import com.bumptech.glide.Glide
 import com.gustavozreis.dogvacionalapp.databinding.ActivityMainBinding
 import com.gustavozreis.dogvacionalapp.network.DogPhotoModel
 import com.gustavozreis.dogvacionalapp.viewmodels.MainViewModel
@@ -31,8 +32,9 @@ class MainActivity : AppCompatActivity() {
         tvDogPhrase = binding?.tvMessage
         btnNewDog = binding?.btnNewdog
 
+        // Livedata observer that changes the dog image
         viewModel.dogObject.observe(this) { newDogObject ->
-            tvDogPhrase?.text = newDogObject?.imgUrl
+            Glide.with(this).load(newDogObject?.imgUrl).into(ivDogImage!!)
         }
 
         btnNewDog?.setOnClickListener {
@@ -45,12 +47,8 @@ class MainActivity : AppCompatActivity() {
     /*
     This functions retrieves e new dog object from the API and manipulates the views with it
      */
-    fun getNewDogFromAPI() {
+    private fun getNewDogFromAPI() {
         viewModel.getNewDogObject()
-        // dog phrase placeholder
-        //tvDogPhrase?.text = dogObject?.imgUrl
-        // dog image placeholder
-        //ivDogImage?.setImageResource(R.drawable.dog_example)
     }
 
 

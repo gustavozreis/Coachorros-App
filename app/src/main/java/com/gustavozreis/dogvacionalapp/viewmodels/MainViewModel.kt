@@ -28,13 +28,13 @@ class MainViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     /*
-    This function retrieve a new dog photo from the API, uses the viewmodel coroutine
+    This function retrieves a new dog photo from the API, uses the created viewmodel coroutine (viewModelJob)
      */
     fun getNewDogObject() {
            coroutineScope.launch {
-               var getDogPhotoModelDeferred = DogApi.retrofitService.getDogObject()
+               val getDogPhotoModelDeferred = DogApi.retrofitService.getDogObject()
                try {
-                   var newDogObject = getDogPhotoModelDeferred.await()
+                   val newDogObject = getDogPhotoModelDeferred.await()
                    _dogObject.value = newDogObject
                } catch (t: Throwable) {
                    _dogObject.value = null
