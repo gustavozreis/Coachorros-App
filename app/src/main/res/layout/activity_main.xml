@@ -53,7 +53,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/iv_dog_image"
                     app:layout_constraintEnd_toEndOf="@id/iv_dog_image"
                     app:layout_constraintStart_toStartOf="@id/iv_dog_image"
-                    tools:text="Dê mais atenção ao que você tem de bom na sua vida!" />
+                    tools:text="1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 " />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

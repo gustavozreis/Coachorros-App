@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
 import com.bumptech.glide.Glide
+import com.gustavozreis.dogvacionalapp.data.Phrases
+import com.gustavozreis.dogvacionalapp.data.Phrases.listOfPhrases
 import com.gustavozreis.dogvacionalapp.databinding.ActivityMainBinding
 import com.gustavozreis.dogvacionalapp.network.DogPhotoModel
 import com.gustavozreis.dogvacionalapp.viewmodels.MainViewModel
@@ -32,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         tvDogPhrase = binding?.tvMessage
         btnNewDog = binding?.btnNewdog
 
+        // Gets a random phrase for the image
+        tvDogPhrase?.text = Phrases.listOfPhrases.random()
+
         // Livedata observer that changes the dog image
         viewModel.dogObject.observe(this) { newDogObject ->
             Glide.with(this).load(newDogObject?.imgUrl).into(ivDogImage!!)
@@ -49,6 +54,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun getNewDogFromAPI() {
         viewModel.getNewDogObject()
+        tvDogPhrase?.text = Phrases.listOfPhrases.random()
     }
 
 
