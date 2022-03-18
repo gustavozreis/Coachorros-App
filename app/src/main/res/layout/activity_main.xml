@@ -50,6 +50,7 @@
                     android:fontFamily="sans-serif-condensed"
                     android:gravity="center"
                     android:padding="32dp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/iv_dog_image"
                     app:layout_constraintEnd_toEndOf="@id/iv_dog_image"
                     app:layout_constraintStart_toStartOf="@id/iv_dog_image"

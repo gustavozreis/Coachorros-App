@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DogvacionalApp">
         <activity
+            android:screenOrientation="portrait"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
