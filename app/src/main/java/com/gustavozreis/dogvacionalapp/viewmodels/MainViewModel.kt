@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gustavozreis.dogvacionalapp.data.Phrases
 import com.gustavozreis.dogvacionalapp.network.DogApi
 import com.gustavozreis.dogvacionalapp.network.DogPhotoModel
 import kotlinx.coroutines.CoroutineScope
@@ -20,6 +21,10 @@ class MainViewModel : ViewModel() {
     val dogObject: LiveData<DogPhotoModel?> // non-changeable livedata
         get() = _dogObject
 
+    var _imagePhrase = MutableLiveData<String>() // changeable image phrase live data
+    val imagePhrase: LiveData<String> // non-changeable image phrase live data
+        get() = _imagePhrase
+
     // Variable for coroutine job
     private var viewModelJob = Job()
 
@@ -28,18 +33,22 @@ class MainViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     /*
-    This function retrieves a new dog photo from the API, uses the created viewmodel coroutine (viewModelJob)
+    This function retrieves a new dog photo from the API, and a new phrase from
+     the data using the created viewmodel coroutine (viewModelJob)
      */
-    fun getNewDogObject() {
+    fun getNewCoachorro() {
            coroutineScope.launch {
                val getDogPhotoModelDeferred = DogApi.retrofitService.getDogObject()
                try {
                    val newDogObject = getDogPhotoModelDeferred.await()
                    _dogObject.value = newDogObject
+
                } catch (t: Throwable) {
                    _dogObject.value = null
                }
+               _imagePhrase.value = Phrases.listOfPhrases.random()
            }
+
     }
 
     override fun onCleared() {
