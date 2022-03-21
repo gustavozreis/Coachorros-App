@@ -1,5 +1,6 @@
 package com.gustavozreis.dogvacionalapp
 
+import android.app.Dialog
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,6 +32,8 @@ class MainActivity : AppCompatActivity() {
     var tvDogPhrase: TextView? = null
     var btnNewDog: Button? = null
 
+    var loadingProgressBar: Dialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -47,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         var imagePhrase: String = ""
 
         // Livedata observer that changes the image phrase
-        viewModel.imagePhrase.observe(this@MainActivity) { newPhrase ->
+        viewModel.imagePhrase.observe(this) { newPhrase ->
             imagePhrase = newPhrase
         }
 
@@ -62,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                         target: Target<Drawable>?,
                         isFirstResource: Boolean
                     ): Boolean {
+                        // Show error if the image loading fails
                        Log.e("TAG", "Image loading error!")
                         return false
                     }
@@ -73,7 +77,9 @@ class MainActivity : AppCompatActivity() {
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
+                        // Change the image textview once the image is loaded
                         tvDogPhrase?.text = imagePhrase
+                        cancelProgressBarDialog()
                         return false
                     }
 
@@ -81,10 +87,12 @@ class MainActivity : AppCompatActivity() {
                 .into(ivDogImage!!)
         }
 
-
+        getNewDogFromAPI()
 
         btnNewDog?.setOnClickListener {
+            showProgressBarDialog()
             getNewDogFromAPI()
+            tvDogPhrase?.text = ""
         }
 
     }
@@ -95,6 +103,27 @@ class MainActivity : AppCompatActivity() {
      */
     private fun getNewDogFromAPI() {
         viewModel.getNewCoachorro()
+    }
+
+    /*
+    This function will show the progress bar dialog
+     */
+    private fun showProgressBarDialog() {
+        loadingProgressBar = Dialog(this)
+        loadingProgressBar?.setCancelable(false)
+        loadingProgressBar?.setContentView(R.layout.image_loading_progress_bar)
+        loadingProgressBar?.show()
+    }
+
+    /*
+    This function will cancel the progress bar dialog
+     */
+    private fun cancelProgressBarDialog() {
+        if (loadingProgressBar != null) {
+            loadingProgressBar?.dismiss()
+            loadingProgressBar = null
+        }
+
     }
 
 
