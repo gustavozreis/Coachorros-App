@@ -1,11 +1,15 @@
 package com.gustavozreis.dogvacionalapp
 
 import android.app.Dialog
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -145,6 +149,17 @@ class MainActivity : AppCompatActivity() {
         }
         loadingRotatingLogo?.start()
     }
+
+    /*
+    This function will create a bitmap out of the view and share it
+     */
+    private fun createAndShareBitmapFromView(view: View) {
+        val returnedBitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(returnedBitmap)
+        view.draw(canvas)
+
+    }
+
 }
 
 
