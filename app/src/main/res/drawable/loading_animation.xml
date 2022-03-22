@@ -4,7 +4,6 @@
     <item android:drawable="@drawable/loading_animation_02" android:duration="50"/>
     <item android:drawable="@drawable/loading_animation_03" android:duration="50"/>
     <item android:drawable="@drawable/loading_animation_04" android:duration="50"/>
-    <item android:drawable="@drawable/loading_animation_05" android:duration="50"/>
     <item android:drawable="@drawable/loading_animation_06" android:duration="50"/>
     <item android:drawable="@drawable/loading_animation_08" android:duration="50"/>
     <item android:drawable="@drawable/loading_animation_09" android:duration="50"/>
@@ -24,5 +23,6 @@
     <item android:drawable="@drawable/loading_animation_23" android:duration="50"/>
     <item android:drawable="@drawable/loading_animation_24" android:duration="50"/>
     <item android:drawable="@drawable/loading_animation_25" android:duration="50"/>
+    <item android:drawable="@drawable/loading_animation_26" android:duration="50"/>
 
 </animation-list>

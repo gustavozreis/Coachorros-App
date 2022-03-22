@@ -47,6 +47,11 @@ class MainActivity : AppCompatActivity() {
         tvDogPhrase = binding?.tvMessage
         btnNewDog = binding?.btnNewdog
 
+        // These 2 functions will start the loading animation
+        // and retrieve the first imagem and phrase
+        showRotatingLogoLoading()
+        getNewDogFromAPI()
+
         // Gets a random phrase for the image
         //tvDogPhrase?.text = Phrases.listOfPhrases.random()
 
