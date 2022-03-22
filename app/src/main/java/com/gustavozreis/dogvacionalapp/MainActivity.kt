@@ -1,6 +1,7 @@
 package com.gustavozreis.dogvacionalapp
 
 import android.app.Dialog
+import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.core.view.setPadding
 import androidx.lifecycle.LiveData
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -34,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 
     var loadingProgressBar: Dialog? = null
 
+    var loadingRotatingLogo: AnimationDrawable? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -58,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.dogObject.observe(this) { newDogObject ->
             Glide.with(this)
                 .load(newDogObject?.imgUrl)
-                .listener(object: RequestListener<Drawable> {
+                .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
                         e: GlideException?,
                         model: Any?,
@@ -66,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                         isFirstResource: Boolean
                     ): Boolean {
                         // Show error if the image loading fails
-                       Log.e("TAG", "Image loading error!")
+                        Log.e("TAG", "Image loading error!")
                         return false
                     }
 
@@ -90,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         getNewDogFromAPI()
 
         btnNewDog?.setOnClickListener {
-            showProgressBarDialog()
+            showRotatingLogoLoading()
             getNewDogFromAPI()
             tvDogPhrase?.text = ""
         }
@@ -106,7 +110,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /*
-    This function will show the progress bar dialog
+    This function will show the progress bar dialog      [NOT USING ANYMORE WILL CLEAN UP WHEN PROJECT IS DONE]
      */
     private fun showProgressBarDialog() {
         loadingProgressBar = Dialog(this)
@@ -116,7 +120,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /*
-    This function will cancel the progress bar dialog
+    This function will cancel the progress bar dialog [NOT USING ANYMORE WILL CLEAN UP WHEN PROJECT IS DONE]
      */
     private fun cancelProgressBarDialog() {
         if (loadingProgressBar != null) {
@@ -126,5 +130,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
+    /*
+    This function will show the rotating logo on the imageview when retrieving the image
+     */
+    private fun showRotatingLogoLoading() {
+        ivDogImage?.apply {
+            setBackgroundResource(R.drawable.loading_animation)
+            loadingRotatingLogo = background as AnimationDrawable
+        }
+        loadingRotatingLogo?.start()
+    }
 }
+
+
