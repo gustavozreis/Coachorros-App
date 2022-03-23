@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnShareButton?.setOnClickListener {
-            var currentImageBitmap: Bitmap = createBitmapFromView(ivDogImage)
+            var currentImageBitmap: Bitmap = createBitmapFromView(ivDogImage, tvDogPhrase)
             var currentImageUri: Uri? = null
             lifecycleScope.launch {
                 currentImageUri = saveImage(currentImageBitmap)
@@ -158,12 +158,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     /*
-    This function creates a bitmap out of a view
+    This function creates a bitmap out of the imageview and the phrase textview
      */
-    private fun createBitmapFromView(view: ImageView?): Bitmap {
-        val returnedBitmap = Bitmap.createBitmap(view!!.width, view.height, Bitmap.Config.ARGB_8888)
+    private fun createBitmapFromView(dogPhoto: ImageView?, phrase: TextView?): Bitmap {
+        val returnedBitmap = Bitmap.createBitmap(dogPhoto!!.width, dogPhoto.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(returnedBitmap)
-        view.draw(canvas)
+        dogPhoto.draw(canvas)
+        phrase?.draw(canvas)
         return returnedBitmap
     }
 
@@ -185,7 +186,7 @@ class MainActivity : AppCompatActivity() {
 
                 image.compress( // compress bitmap
                     Bitmap.CompressFormat.PNG,
-                    90,
+                    100,
                     fileOutputStream
                 )
 
@@ -220,7 +221,7 @@ class MainActivity : AppCompatActivity() {
                 this.putExtra(Intent.EXTRA_STREAM, uri)
                 this.type = "image/png"
             }
-            startActivity(intent)
+            startActivity(Intent.createChooser(intent, "Share"))
         }
     }
 

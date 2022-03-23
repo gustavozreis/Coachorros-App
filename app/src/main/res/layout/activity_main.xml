@@ -44,16 +44,19 @@
                 <TextView
                     android:id="@+id/tv_message"
                     style="@style/quote_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="260dp"
+                    android:layout_height="260dp"
                     android:fontFamily="sans-serif-condensed"
-                    android:gravity="center"
-                    android:padding="32dp"
+                    android:gravity="bottom"
+                    android:padding="25dp"
+                    android:textAlignment="center"
                     android:textStyle="bold"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_dog_image"
                     app:layout_constraintEnd_toEndOf="@id/iv_dog_image"
                     app:layout_constraintStart_toStartOf="@id/iv_dog_image"
-                    tools:text="1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 " />
+                    tools:ignore="RtlCompat"
+                    tools:text="É dura a saudade de querer estar perto, estando longe." />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -67,25 +70,24 @@
             android:backgroundTint="@color/purple"
             android:text="@string/btn_main"
             android:textColor="@color/yellow"
+            app:layout_constraintBottom_toTopOf="@id/btn_share"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cv_main"
-            app:layout_constraintBottom_toTopOf="@id/btn_share"/>
+            app:layout_constraintTop_toBottomOf="@id/cv_main" />
 
         <Button
             android:id="@+id/btn_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="14sp"
             android:backgroundTint="@color/teal"
             android:text="@string/btn_share_text"
             android:textColor="@color/purple"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_newdog"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
+            app:layout_constraintTop_toBottomOf="@id/btn_newdog" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
