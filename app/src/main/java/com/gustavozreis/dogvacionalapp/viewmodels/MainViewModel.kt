@@ -1,5 +1,7 @@
 package com.gustavozreis.dogvacionalapp.viewmodels
 
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +16,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class MainViewModel : ViewModel() {
 
@@ -50,6 +53,7 @@ class MainViewModel : ViewModel() {
            }
 
     }
+
 
     override fun onCleared() {
         super.onCleared()

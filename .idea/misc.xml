@@ -5,9 +5,12 @@
       <map>
         <entry key="..\:/Users/gzrei/Desktop/PROGRAMACAO/APRENDENDO/DogvacionalApp/app/src/main/res/drawable/loading_animation.xml" value="0.313" />
         <entry key="..\:/Users/gzrei/Desktop/PROGRAMACAO/APRENDENDO/DogvacionalApp/app/src/main/res/drawable/loading_rotate.xml" value="0.3195" />
-        <entry key="..\:/Users/gzrei/Desktop/PROGRAMACAO/APRENDENDO/DogvacionalApp/app/src/main/res/layout/activity_main.xml" value="0.67" />
+        <entry key="..\:/Users/gzrei/Desktop/PROGRAMACAO/APRENDENDO/DogvacionalApp/app/src/main/res/drawable/shape_share_button.xml" value="0.338" />
+        <entry key="..\:/Users/gzrei/Desktop/PROGRAMACAO/APRENDENDO/DogvacionalApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/gzrei/Desktop/PROGRAMACAO/APRENDENDO/DogvacionalApp/app/src/main/res/layout/activity_splash.xml" value="0.22" />
         <entry key="..\:/Users/gzrei/Desktop/PROGRAMACAO/APRENDENDO/DogvacionalApp/app/src/main/res/layout/image_loading_progress_bar.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/gzrei/Desktop/PROGRAMACAO/APRENDENDO/DogvacionalApp/app/src/main/res/layout/share_button_layout.xml" value="0.2722222222222222" />
+        <entry key="..\:/Users/gzrei/Desktop/PROGRAMACAO/APRENDENDO/DogvacionalApp/app/src/main/res/xml/file_paths.xml" value="0.20598290598290597" />
       </map>
     </option>
   </component>
