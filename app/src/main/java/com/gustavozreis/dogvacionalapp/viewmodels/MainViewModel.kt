@@ -1,11 +1,8 @@
 package com.gustavozreis.dogvacionalapp.viewmodels
 
-import android.graphics.Bitmap
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.gustavozreis.dogvacionalapp.data.Phrases
 import com.gustavozreis.dogvacionalapp.network.DogApi
 import com.gustavozreis.dogvacionalapp.network.DogPhotoModel
@@ -13,10 +10,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.io.File
 
 class MainViewModel : ViewModel() {
 
@@ -51,9 +44,7 @@ class MainViewModel : ViewModel() {
                }
                _imagePhrase.value = Phrases.listOfPhrases.random()
            }
-
     }
-
 
     override fun onCleared() {
         super.onCleared()

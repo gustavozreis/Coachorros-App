@@ -1,6 +1,5 @@
 package com.gustavozreis.dogvacionalapp
 
-import android.app.Dialog
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Bitmap
@@ -10,9 +9,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -20,16 +17,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.cardview.widget.CardView
 import androidx.core.content.FileProvider
-import androidx.core.view.setPadding
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.gustavozreis.dogvacionalapp.data.Phrases
-import com.gustavozreis.dogvacionalapp.data.Phrases.listOfPhrases
 import com.gustavozreis.dogvacionalapp.databinding.ActivityMainBinding
 import com.gustavozreis.dogvacionalapp.network.DogPhotoModel
 import com.gustavozreis.dogvacionalapp.viewmodels.MainViewModel
@@ -39,7 +32,6 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -128,14 +120,12 @@ class MainActivity : AppCompatActivity() {
 
         btnShareButton?.setOnClickListener {
             var currentImageBitmap: Bitmap = createBitmapFromView(ivDogImage, tvDogPhrase)
-            var currentImageUri: Uri? = null
+            var currentImageUri: Uri?
             lifecycleScope.launch {
                 currentImageUri = saveImage(currentImageBitmap)
                 shareImageUri(currentImageUri)
             }
-
         }
-
     }
 
 
@@ -161,7 +151,8 @@ class MainActivity : AppCompatActivity() {
     This function creates a bitmap out of the imageview and the phrase textview
      */
     private fun createBitmapFromView(dogPhoto: ImageView?, phrase: TextView?): Bitmap {
-        val returnedBitmap = Bitmap.createBitmap(dogPhoto!!.width, dogPhoto.height, Bitmap.Config.ARGB_8888)
+        val returnedBitmap =
+            Bitmap.createBitmap(dogPhoto!!.width, dogPhoto.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(returnedBitmap)
         dogPhoto.draw(canvas)
         phrase?.draw(canvas)
@@ -192,8 +183,6 @@ class MainActivity : AppCompatActivity() {
 
                 fileOutputStream.flush() // send bitmap data to created file
                 fileOutputStream.close() // close stream
-
-                ///data/data/com.gustavozreis.dogvacionalapp/cache/images/shared_image.png
                 uri = FileProvider.getUriForFile( // retrieves the file uri
                     this@MainActivity,
                     "com.gustavozreis.fileprovider",
@@ -201,7 +190,8 @@ class MainActivity : AppCompatActivity() {
                 )
 
             } catch (e: IOException) {
-                Toast.makeText(this@MainActivity, "Error while saving the file", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MainActivity, "Error while saving the file", Toast.LENGTH_LONG)
+                    .show()
                 Log.d(TAG, "IOException while saving the file")
             }
         }
@@ -212,20 +202,16 @@ class MainActivity : AppCompatActivity() {
     This function shares the image
      */
     private fun shareImageUri(uri: Uri?) {
-        if (uri == null) {
-            Toast.makeText(this, "URI É NULO", Toast.LENGTH_LONG).show()
-        } else {
-            val intent = Intent().apply {
-                this.action = Intent.ACTION_SEND
-                this.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                this.putExtra(Intent.EXTRA_STREAM, uri)
-                this.type = "image/png"
-            }
-            startActivity(Intent.createChooser(intent, "Share"))
+        val intent = Intent().apply {
+            this.action = Intent.ACTION_SEND
+            this.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            this.putExtra(Intent.EXTRA_STREAM, uri)
+            this.type = "image/png"
         }
+        startActivity(Intent.createChooser(intent, "Share"))
     }
-
-
 }
+
+
 
 
