@@ -14,6 +14,7 @@ class SplashActivity : AppCompatActivity() {
         // this will make the activity change after 1.5s
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }, 1500)
 
     }

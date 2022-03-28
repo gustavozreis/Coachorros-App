@@ -24,7 +24,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.gustavozreis.dogvacionalapp.databinding.ActivityMainBinding
-import com.gustavozreis.dogvacionalapp.network.DogPhotoModel
 import com.gustavozreis.dogvacionalapp.viewmodels.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,38 +34,32 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
-    val viewModel: MainViewModel by viewModels()
-    var binding: ActivityMainBinding? = null
-    var dogObject: DogPhotoModel? = null
+    private val viewModel: MainViewModel by viewModels()
+    private var binding: ActivityMainBinding? = null
 
-    var ivDogImage: ImageView? = null
-    var tvDogPhrase: TextView? = null
-    var cvImageContainer: CardView? = null
+    private var ivDogImage: ImageView? = null
+    private var tvDogPhrase: TextView? = null
+    private var cvImageContainer: CardView? = null
 
-    var btnNewDog: Button? = null
+    private var btnNewDog: Button? = null
+    private var btnShareButton: Button? = null
 
-    var loadingRotatingLogo: AnimationDrawable? = null
+    private var loadingRotatingLogo: AnimationDrawable? = null
 
-    var btnShareButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
-        ivDogImage = binding?.ivDogImage
-        tvDogPhrase = binding?.tvMessage
-        btnNewDog = binding?.btnNewdog
-        btnShareButton = binding?.btnShare
-        cvImageContainer = binding?.cvMain
+        setUpViewBindingVariables()
 
-        // These 2 functions will start the loading animation
-        // and retrieve the first imagem and phrase
+        // These 2 functions will start the loading animation and retrieve the first imagem and phrase
         showRotatingLogoLoading()
         getNewDogFromAPI()
 
         // Placeholder variable for the image phrase
-        var imagePhrase: String = ""
+        var imagePhrase = ""
 
         // Livedata observer that changes the image phrase
         viewModel.imagePhrase.observe(this) { newPhrase ->
@@ -112,6 +105,10 @@ class MainActivity : AppCompatActivity() {
 
         getNewDogFromAPI()
 
+        setupButtonsClickListeners()
+    }
+
+    private fun setupButtonsClickListeners() {
         btnNewDog?.setOnClickListener {
             showRotatingLogoLoading()
             getNewDogFromAPI()
@@ -119,13 +116,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnShareButton?.setOnClickListener {
-            var currentImageBitmap: Bitmap = createBitmapFromView(ivDogImage, tvDogPhrase)
+            val currentImageBitmap: Bitmap = createBitmapFromView(ivDogImage, tvDogPhrase)
             var currentImageUri: Uri?
             lifecycleScope.launch {
                 currentImageUri = saveImage(currentImageBitmap)
                 shareImageUri(currentImageUri)
             }
         }
+    }
+
+    private fun setUpViewBindingVariables() {
+        ivDogImage = binding?.ivDogImage
+        tvDogPhrase = binding?.tvMessage
+        btnNewDog = binding?.btnNewdog
+        btnShareButton = binding?.btnShare
+        cvImageContainer = binding?.cvMain
     }
 
 
@@ -183,6 +188,7 @@ class MainActivity : AppCompatActivity() {
 
                 fileOutputStream.flush() // send bitmap data to created file
                 fileOutputStream.close() // close stream
+
                 uri = FileProvider.getUriForFile( // retrieves the file uri
                     this@MainActivity,
                     "com.gustavozreis.fileprovider",
