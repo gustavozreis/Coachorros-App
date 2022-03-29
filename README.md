@@ -6,7 +6,7 @@ O app Coachorros une os melhores cachorros com as melhores frases motivacionais 
 
 Nesse projeto pessoal, o objetivo foi aplicar alguns conceitos que estou estudando.
 
-A ideia era consumir 2 API, uma de foto de uma de frases, e uni-las em uma imagem que pode ser compartilhada.
+A ideia era consumir duas APIs, uma de foto de uma de frases, e uni-las em uma imagem que pode ser compartilhada.
 
 Para a API de fotos utilizei a Dog CEO Api: https://dog.ceo/dog-api/.
 Nas frases motivacionais foi onde tive maior dificuldade, não existe uma API dessa em português. Para resolver esse problema, tive que aprender a fazer um Webscraper em Java que utilizei para recuperar mais de 7000 frases (link para o repositório do webscraper: https://github.com/gustavozreis/JavaWebScraping).
@@ -30,3 +30,4 @@ Para a construção desse projeto utilizei:
 - Splash Activity
 - Bundle Build
 - Webscraping
+- Intent implícito
