@@ -14,6 +14,7 @@ Nas frases motivacionais foi onde tive maior dificuldade, não existe uma API de
 Outra novidade que tive que aprender foi como criar o Bundle necessário para subir o App e como configurá-lo na Play Store.
 
 Deu tudo certo e ele pode ser baixado em: https://play.google.com/store/apps/details?id=com.gustavozreis.dogvacionalapp
+
 Link do repositório do projeto no GitHub: https://github.com/gustavozreis/Coachorros-App
 
 
