@@ -15,12 +15,13 @@ A ideia era consumir duas APIs, uma de foto de uma de frases, e aleatoriamente u
 Para a API de fotos utilizei a Dog CEO Api: https://dog.ceo/dog-api/.
 Nas frases motivacionais foi onde tive maior dificuldade, não existe uma API dessa em português. Para resolver esse problema, tive que aprender a fazer um Webscraper em Java que utilizei para recuperar mais de 7000 frases (link para o repositório do webscraper: https://github.com/gustavozreis/JavaWebScraping).
 
+Dois desafios que apareceram o meio do desenvolvimento e me deram um pouco de dor de cabeça foi unir 2 views em um canvas pra entao salvá-la. E também entender como salvar essa imagem dentro do cache do app para que não consuma espaço no armazenamento externo.
+
 Outra novidade que tive que aprender foi como criar o Bundle necessário para subir o App e como configurá-lo na Play Store.
 
 Deu tudo certo e ele pode ser baixado em: https://play.google.com/store/apps/details?id=com.gustavozreis.dogvacionalapp
 
 Link do repositório do projeto no GitHub: https://github.com/gustavozreis/Coachorros-App
-
 
 Para a construção desse projeto utilizei:
 - Consumo de APIs
